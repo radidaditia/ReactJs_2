@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React State Example</title>
+    <style>
+        /* CSS sederhana untuk tata letak */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .counter-container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .button-group {
+            margin: 20px 100px  ;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            border: none;
+            border-radius: 3px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .reset-button {
+            background-color: #dc3545;
+        }
+
+        .reset-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Menambahkan React dan ReactDOM dari CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- Tambahkan script JSX -->
+    <script type="text/babel">
+        class ClickCounter extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    count: 0
+                };
+            }
+
+            handleIncrement = () => {
+                this.setState({ count: this.state.count + 1 });
+            };
+
+            handleDecrement = () => {
+                this.setState({ count: this.state.count - 1 });
+            };
+
+            handleReset = () => {
+                this.setState({ count: 0 });
+            };
+
+            render() {
+                return (
+                    <div className="counter-container">
+                        <div className="button-group">
+                            <button onClick={this.handleIncrement}>+</button>
+                            <span>{this.state.count}</span>
+                            <button onClick={this.handleDecrement}>-</button>
+                        </div>
+                        <button className="reset-button" onClick={this.handleReset}>Reset</button>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<ClickCounter />, document.getElementById('root'));
+    </script>
+</body>
+</html>

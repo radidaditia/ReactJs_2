@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Form Example</title>
+    <style>
+        /* CSS sederhana untuk tata letak */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Menambahkan React dan ReactDOM dari CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- Tambahkan script JSX -->
+    <script type="text/babel">
+        class FormExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    name: '',
+                    email: '',
+                    submittedName: '',
+                    submittedEmail: ''
+                };
+            }
+
+            handleChange = (event) => {
+                this.setState({ [event.target.name]: event.target.value });
+            };
+
+            handleSubmit = (event) => {
+                event.preventDefault();
+                this.setState({
+                    submittedName: this.state.name,
+                    submittedEmail: this.state.email
+                });
+            };
+
+            render() {
+                return (
+                    <div className="form-container">
+                        <h1>Form Input</h1>
+                        <form onSubmit={this.handleSubmit}>
+                            <div>
+                                <label>
+                                    Name:
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={this.state.name}
+                                        onChange={this.handleChange}
+                                    />
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    Email:
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={this.state.email}
+                                        onChange={this.handleChange}
+                                    />
+                                </label>
+                            </div>
+                            <button type="submit">Submit</button>
+                        </form>
+                        {this.state.submittedName && (
+                            <div>
+                                <h2>Submitted Information</h2>
+                                <p><strong>Name:</strong> {this.state.submittedName}</p>
+                                <p><strong>Email:</strong> {this.state.submittedEmail}</p>
+                            </div>
+                        )}
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<FormExample />, document.getElementById('root'));
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Props Example</title>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <!-- Menambahkan React dan ReactDOM dari CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- Tambahkan script JSX -->
+    <script type="text/babel">
+        // Membuat komponen yang menerima props
+        const Introduction = (props) => {
+            return (
+                <div>
+                    <h1>Hello, nama saya {props.name}!</h1>
+                    <p>Saya saat ini berumur {props.age} tahun.</p>
+                </div>
+            );
+        };
+
+        // Komponen induk yang akan mengirim data ke komponen Introduction
+        const App = () => {
+            const name = "Radid";
+            const age = 17;
+
+            return (
+                <div>
+                    <Introduction name={name} age={age} />
+                </div>
+            );
+        };
+
+        // Render komponen App ke halaman HTML
+        ReactDOM.render(<App />, document.getElementById('root'));
+    </script>
+</body>
+
+</html>

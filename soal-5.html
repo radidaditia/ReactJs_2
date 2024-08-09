@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React List Example</title>
+    <style>
+        /* CSS sederhana untuk tata letak */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        .list-container {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <!-- Menambahkan React dan ReactDOM dari CDN -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+
+    <!-- Tambahkan script JSX -->
+    <script type="text/babel">
+        class ItemList extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    items: [
+                        { id: 1, name: 'Item 1' },
+                        { id: 2, name: 'Item 2' },
+                        { id: 3, name: 'Item 3' }
+                    ]
+                };
+            }
+
+            
+            render() {
+                return (
+                    <div className="list-container">
+                        <h1>Daftar Item</h1>
+                        <ul>
+                            {this.state.items.map(item => (
+                                <li key={item.id}>{item.name}</li>
+                            ))}
+                        </ul>
+                    </div>
+                );
+            }
+        }
+
+        ReactDOM.render(<ItemList />, document.getElementById('root'));
+    </script>
+</body>
+</html>
